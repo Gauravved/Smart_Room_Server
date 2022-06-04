@@ -32,7 +32,7 @@ mongoose.connect(process.env.MONGO_URL, {
 });
 
 
-const server = app.listen(process.env.PORT, ()=>{
+const server = app.listen("https://smartroom-server.herokuapp.com", ()=>{
     console.log("Server at Port:"+process.env.PORT);
 });
 
