@@ -8,13 +8,13 @@ const User = require('./models/userModel').userModel;
 
 const app = express();
 require('dotenv').config();
-app.use(cors());
+app.use(cors({origin: true}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 
 app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin: https://smart-room-chat.herokuapp.com ");
+    res.header("Access-Control-Allow-Origin: https://smart-room-chat.herokuapp.com");
     res.header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, X-Auth-Token");
     res.header("Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, OPTIONS");
     next();   
