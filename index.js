@@ -8,7 +8,10 @@ const User = require('./models/userModel').userModel;
 
 const app = express();
 require('dotenv').config();
-app.use(cors({origin: true}));
+app.use(cors({
+    origin: "https://smart-room-chat.herokuapp.com",
+    methods: ['GET','POST','PUT','PATCH', 'DELETE']
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
