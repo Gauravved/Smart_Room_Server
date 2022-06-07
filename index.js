@@ -6,7 +6,6 @@ const messageRoute = require('./routes/messageRoute');
 const socket = require('socket.io');
 const User = require('./models/userModel').userModel; 
 const path = require('path');
-const http = require('http');
 const SERVER_PORT = 8087; 
 var WebSocketServer = require('ws').Server , wss = new WebSocketServer({port :8087});
 
@@ -42,7 +41,9 @@ mongoose.connect(process.env.MONGO_URL, {
 }).catch((err)=>{
     console.log(err.message);
 });
-const server = http.createServer(app);
+const server = app.listen(process.env.PORT, ()=>{
+    console.log("Server at Port:"+process.env.PORT);
+});
 
 const io = socket(server, {
     cors:{
