@@ -20,11 +20,11 @@ app.all('/*',function(req, res, next) {
     res.header("Access-Control-Allow-Methods","GET, POST, PUT, PATCH, DELETE, OPTIONS");
     next();   
 });
-// app.use(express.static(path.join(__dirname + '/public'+'/build')));
+app.use(express.static(path.join(__dirname + '/public'+'/build')));
 
-// app.use('/', (req,res,next)=>{
-//     res.sendFile('./public/build');
-// })
+app.use('/', (req,res,next)=>{
+    res.sendFile('./public/build');
+})
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin","*");
     res.header("Access-Control-Allow-Methods","GET, POST, PUT, PATCH, DELETE, OPTIONS");
@@ -50,7 +50,7 @@ const server = app.listen(process.env.PORT, ()=>{
 
 const io = socket(server, {
     cors:{
-        origin: "https://smart-room-chat.herokuapp.com",
+        origin: "https://smart-room-app.herokuapp.com",
         credentials: true
     }
 })
