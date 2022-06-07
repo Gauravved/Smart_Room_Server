@@ -20,11 +20,11 @@ app.all('/*',function(req, res, next) {
     res.header("Access-Control-Allow-Methods","GET, POST, PUT, PATCH, DELETE, OPTIONS");
     next();   
 });
-app.use(express.static(path.join(__dirname + '/public'+'/build')));
+// app.use(express.static(path.join(__dirname + '/public'+'/build')));
 
-app.use('/', (req,res,next)=>{
-    res.sendFile('./public/build');
-})
+// app.use('/', (req,res,next)=>{
+//     res.sendFile('./public/build');
+// })
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin","*");
     res.header("Access-Control-Allow-Methods","GET, POST, PUT, PATCH, DELETE, OPTIONS");
@@ -41,9 +41,6 @@ mongoose.connect(process.env.MONGO_URL, {
 }).catch((err)=>{
     console.log(err.message);
 });
-app.use('/',(req,res,next)=>{
-    res.json({hello:"data"})
-})
 const server = app.listen(process.env.PORT, ()=>{
     console.log("Server at Port:"+process.env.PORT);
 });
