@@ -5,7 +5,9 @@ const userRoute = require('./routes/userRoute');
 const messageRoute = require('./routes/messageRoute');
 const socket = require('socket.io');
 const User = require('./models/userModel').userModel; 
-const path = require('path')
+const path = require('path');
+const SERVER_PORT = 8087; 
+var WebSocketServer = require('ws').Server , wss = new WebSocketServer({port :8087});
 
 const app = express();
 require('dotenv').config();
@@ -52,6 +54,7 @@ const io = socket(server, {
         credentials: true
     }
 })
+
 
 global.onlineUsers = new Map();
 
