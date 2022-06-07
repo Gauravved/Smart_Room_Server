@@ -45,11 +45,12 @@ const server = app.listen(process.env.PORT, ()=>{
     console.log("Server at Port:"+process.env.PORT);
 });
 
-const io = socket(app.listen(process.env.PORT), {
+const io = socket(server, {
     cors:{
         origin: "https://smart-room-chat.herokuapp.com",
         credentials: true
-    }
+    },
+    allowEIO3: true
 })
 
 
