@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const userRoute = require('./routes/userRoute');
 const messageRoute = require('./routes/messageRoute');
+const socket = require('socket.io');
 const User = require('./models/userModel').userModel; 
 const path = require('path')
 
@@ -45,7 +46,11 @@ const server = app.listen(process.env.PORT, ()=>{
     console.log("Server at Port:"+process.env.PORT);
 });
 
-const io = require('socket.io').listen(server);
+let io = socket.listen(server);
+io = socket(server, cors({
+    origin: "https://smart-room-chat.herokuapp.com/chats",
+    credentials: true
+})); 
 
 global.onlineUsers = new Map();
 
