@@ -46,11 +46,12 @@ const server = app.listen(process.env.PORT, ()=>{
     console.log("Server at Port:"+process.env.PORT);
 });
 
-let io = socket.listen(server);
-io = socket(server, cors({
-    origin: "https://smart-room-chat.herokuapp.com/chats",
-    credentials: true
-})); 
+const io = socket(server, {
+    cors:{
+        origin: "https://smart-room-chat.herokuapp.com",
+        credentials: true
+    }
+})
 
 global.onlineUsers = new Map();
 
