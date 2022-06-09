@@ -6,10 +6,10 @@ const messageRoute = require('./routes/messageRoute');
 const socket = require('socket.io');
 const User = require('./models/userModel').userModel; 
 const path = require('path');
-const webSocketPort = 8000
-const webSocketServer = require('websocket').server;
+// const webSocketPort = 8000
+// const webSocketServer = require('websocket').server;
 const http = require('http');
-const { WebSocketServer } = require('ws');
+// const { WebSocketServer } = require('ws');
 
 
 const app = express();
@@ -35,7 +35,9 @@ app.use(function(req, res, next) {
 });
 app.use('/api/auth', userRoute);
 app.use('/api/message', messageRoute);
-
+app.use('/',(req,res,next)=>{
+    res.json({data: "Server is running"});
+})
 mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -48,40 +50,42 @@ const server = http.createServer(app);
 server.listen(process.env.PORT,()=>{
     console.log(`Server Started at ${process.env.PORT}`);
 });
-const wsServer = new WebSocketServer({
-    httpServer: server
-})
+// const wsServer = new WebSocketServer({
+//     httpServer: process.env.PORT
+// })
 const io = socket(server, {
     cors:{
-        origin: "https://smart-room-chat.herokuapp.com/",
-        credentials: true
-    },
-    allowEIO3: true
-})
+        origin: 'http://localhost:3000',
+        credential: true
+    }
+});
 
 
 global.onlineUsers = new Map();
 
-wsServer.on("connection",(socket)=>{
-    socket.on("add-user",(userId)=>{
+io.on('connection',(socket)=>{
+    socket.on('add-user',(userId)=>{
         onlineUsers.set(userId, socket.id);
-        console.log("added", userId);
+        console.log("User added "+userId);
     });
-    socket.on("send-msg",async (data)=>{
-        socket.join(data.receiverRoomId)
-        const user = await User.findById(data.from).select(["username"]);
-        const userName = user.username;
-        const sendUserSocket = [];
+    socket.on('send-msg', (data)=>{
+        const userName = getUserName(data.from);
+        console.log("Message sending");
+        const sendSocketUser = [];
         for(let i=0;i<data.to.length;i++){
-            sendUserSocket.push(onlineUsers.get(data.to[i]));
+            sendSocketUser.push(onlineUsers.get(data.to[i]));
+            console.log(data.to[i]+sendSocketUser);
         }
-        // socket.to(data.receiverRoomId).emit("msg-receive", {message: data.message, from: userName});
         console.log(data.receiverRoomId);
-        for(let i=0;i<sendUserSocket.length;i++){
-            if(sendUserSocket[i]){
-                socket.to(sendUserSocket[i]).emit("msg-receive", {message: data.message, receiverRoomId: data.receiverRoomId, to: data.to[i], from: userName});
-            }
+        for(let i = 0;i<sendSocketUser.length;i++){
+            console.log("sent to ",data.to[i]);
+            socket.to(sendSocketUser[i]).emit('msg-receive', {message: data.message, receiverRoomId: data.receiverRoomId, to: data.to[i], from: userName});
         }
+
     })
 });
 
+async function getUserName(userId) {
+    const user = await User.findById(userId).select(['username']);
+    return user.username;
+}
