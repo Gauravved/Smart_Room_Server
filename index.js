@@ -6,8 +6,11 @@ const messageRoute = require('./routes/messageRoute');
 const socket = require('socket.io');
 const User = require('./models/userModel').userModel; 
 const path = require('path');
-const SERVER_PORT = 8087; 
-var WebSocketServer = require('ws').Server , wss = new WebSocketServer({port :8087});
+const webSocketPort = 8000
+const webSocketServer = require('websocket').server;
+const http = require('http');
+const { WebSocketServer } = require('ws');
+
 
 const app = express();
 require('dotenv').config();
@@ -41,13 +44,16 @@ mongoose.connect(process.env.MONGO_URL, {
 }).catch((err)=>{
     console.log(err.message);
 });
-const server = app.listen(process.env.PORT, ()=>{
-    console.log("Server at Port:"+process.env.PORT);
+const server = http.createServer(app);
+server.listen(process.env.PORT,()=>{
+    console.log(`Server Started at ${process.env.PORT}`);
 });
-
+const wsServer = new WebSocketServer({
+    httpServer: server
+})
 const io = socket(server, {
     cors:{
-        origin: "https://smart-room-chat.herokuapp.com",
+        origin: "https://smart-room-chat.herokuapp.com/",
         credentials: true
     },
     allowEIO3: true
@@ -56,8 +62,7 @@ const io = socket(server, {
 
 global.onlineUsers = new Map();
 
-io.on("connection",(socket)=>{
-    global.chatSocket = socket,
+wsServer.on("connection",(socket)=>{
     socket.on("add-user",(userId)=>{
         onlineUsers.set(userId, socket.id);
         console.log("added", userId);
