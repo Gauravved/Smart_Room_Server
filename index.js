@@ -79,7 +79,7 @@ io.on('connection',(socket)=>{
         console.log(data.receiverRoomId);
         for(let i = 0;i<sendSocketUser.length;i++){
             console.log("sent to ",data.to[i]);
-            socket.to(sendSocketUser[i]).emit('msg-receive', {message: data.message, receiverRoomId: data.receiverRoomId, to: data.to[i], from: userName});
+            socket.to(data.to[i]).emit('msg-receive', {message: data.message, receiverRoomId: data.receiverRoomId, to: data.to[i], from: userName});
         }
 
     })
