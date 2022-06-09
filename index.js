@@ -55,38 +55,35 @@ server.listen(process.env.PORT,()=>{
 // })
 const io = socket(server, {
     cors:{
-        origin: 'https://smart-room-chat.herokuapp.com',
+        origin: 'https://smart-room-chat.herokuapp.com/',
         credential: true
     }
 });
 
 
 global.onlineUsers = new Map();
+global.rooms = new Map();
 
 io.on('connection',(socket)=>{
-    socket.on('add-user',(userId)=>{
+    socket.on("add-user",(userId)=>{
         onlineUsers.set(userId, socket.id);
-        console.log("User added "+userId);
+        console.log("added", userId);
     });
-    socket.on('send-msg', (data)=>{
-        const userName = getUserName(data.from);
-        console.log("Message sending");
-        const sendSocketUser = [];
+    socket.on("send-msg",async (data)=>{
+        socket.join(data.receiverRoomId)
+        const user = await User.findById(data.from).select(["username"]);
+        const userName = user.username;
+        const sendUserSocket = [];
         for(let i=0;i<data.to.length;i++){
-            sendSocketUser.push(onlineUsers.get(data.to[i]));
-            console.log(data.to[i]+sendSocketUser);
+            sendUserSocket.push(onlineUsers.get(data.to[i]));
         }
+        // socket.to(data.receiverRoomId).emit("msg-receive", {message: data.message, from: userName});
         console.log(data.receiverRoomId);
-        io.to(data.receiverRoomId).emit('msg-receive', {message: data.message, receiverRoomId: data.receiverRoomId, to: data.to, from: userName});
-        // for(let i = 0;i<sendSocketUser.length;i++){
-        //     console.log("sent to ",data.to[i]);
-        //     socket.to(data.to[i]).emit('msg-receive', {message: data.message, receiverRoomId: data.receiverRoomId, to: data.to[i], from: userName});
-        // }
-
+        for(let i=0;i<sendUserSocket.length;i++){
+            if(sendUserSocket[i]){
+                socket.to(sendUserSocket[i]).emit("msg-receive", {message: data.message, receiverRoomId: data.receiverRoomId, to: data.to[i], from: userName});
+            }
+        }
     })
 });
 
-async function getUserName(userId) {
-    const user = await User.findById(userId).select(['username']);
-    return user.username;
-}
