@@ -55,7 +55,7 @@ server.listen(process.env.PORT,()=>{
 // })
 const io = socket(server, {
     cors:{
-        origin: 'http://localhost:3000',
+        origin: 'https://smart-room-chat.herokuapp.com',
         credential: true
     }
 });
