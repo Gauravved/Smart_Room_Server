@@ -77,7 +77,7 @@ io.on('connection',(socket)=>{
             console.log(data.to[i]+sendSocketUser);
         }
         console.log(data.receiverRoomId);
-        io.to(data.receiverRoomId).emit('msg-receive', {message: data.message, receiverRoomId: data.receiverRoomId, to: data.to[i], from: userName});
+        io.to(data.receiverRoomId).emit('msg-receive', {message: data.message, receiverRoomId: data.receiverRoomId, to: data.to, from: userName});
         // for(let i = 0;i<sendSocketUser.length;i++){
         //     console.log("sent to ",data.to[i]);
         //     socket.to(data.to[i]).emit('msg-receive', {message: data.message, receiverRoomId: data.receiverRoomId, to: data.to[i], from: userName});
