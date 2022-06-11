@@ -64,7 +64,8 @@ const io = socket(server, {
 global.onlineUsers = new Map();
 global.rooms = new Map();
 
-io.on('connect',(socket)=>{
+
+io.on('connection',(socket)=>{
     socket.on("add-user",(userId)=>{
         onlineUsers.set(userId, socket.id);
         console.log("added", userId);
