@@ -35,6 +35,7 @@ module.exports.register = async (req, res, next) => {
 module.exports. login = async (req, res, next) => {
     try {
         console.log(req.body);
+        console.log(process.env.PORT);
         const { username, password } = req.body;
         const isValidUser = await User.findOne({ username });
         if (!isValidUser) {
