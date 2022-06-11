@@ -52,7 +52,7 @@ server.listen(process.env.PORT,()=>{
 // })
 const io = socket(server, {
     cors:{
-        origin: 'https://smart-room-chat.herokuapp.com/',
+        origin: 'http://localhost:3000',
         credential: true
     }
 });
@@ -78,7 +78,7 @@ io.on('connection',(socket)=>{
         for(let i=0;i<sendUserSocket.length;i++){
             if(sendUserSocket[i]){
                 console.log("Sending to"+data.to[i]);
-                socket.to(data.to[i]).emit("msg-receive", {message: data.message, receiverRoomId: data.receiverRoomId, to: data.to[i], from: userName});
+                socket.to(sendUserSocket[i]).emit("msg-receive", {message: data.message, receiverRoomId: data.receiverRoomId, to: data.to[i], from: userName});
             }
         }
     })
