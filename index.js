@@ -59,7 +59,7 @@ const io = socket(server, {
 
 
 app.use('/',(req,res,next)=>{
-    res.write("SErver running socket on :",io);
+    res.json({data: "Server running", socket: io})
 })
 global.onlineUsers = new Map();
 global.rooms = new Map();
