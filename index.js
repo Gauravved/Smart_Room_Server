@@ -35,9 +35,6 @@ app.use(function(req, res, next) {
 });
 app.use('/api/auth', userRoute);
 app.use('/api/message', messageRoute);
-app.use('/',(req,res,next)=>{
-    res.json({data: "Server is running"});
-})
 mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -61,6 +58,9 @@ const io = socket(server, {
 });
 
 
+app.use('/',(req,res,next)=>{
+    res.write("SErver running socket on :",io);
+})
 global.onlineUsers = new Map();
 global.rooms = new Map();
 
