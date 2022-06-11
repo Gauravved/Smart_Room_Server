@@ -58,7 +58,7 @@ const io = socket(server, {
 });
 
 
-app.use('/',(req,res,next)=>{
+app.post('/',(req,res,next)=>{
     res.json({data: "Server running", socket: io})
 })
 global.onlineUsers = new Map();
