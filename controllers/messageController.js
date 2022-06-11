@@ -20,7 +20,7 @@ module.exports.addMessage = async (req, res, next)=>{
             receiver: to
         });
         if(data){
-            return res.json({msg: "Message added Successfully", data: data });
+            return res.json({msg: "Message added Successfully", data: data, roomName: req.body.name });
         }
         else{
             return res.json({msg: " Failed to add Message"})
