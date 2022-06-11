@@ -56,11 +56,6 @@ const io = socket(server, {
         credential: true
     }
 });
-
-
-app.use('/',(req,res,next)=>{
-    res.json({data: "Server running", socket: io})
-})
 global.onlineUsers = new Map();
 global.rooms = new Map();
 
