@@ -93,7 +93,8 @@ module.exports.forgotPassword = async (req, res, next) => {
             //Link generation from the Token
             const link = `https://smart-room-chat.herokuapp.com/resetPassword/${validEmail.id}/${token}`
             const transporter = nodemailer.createTransport({
-                service: 'gmail',
+                host: "smtp.gmail.com",
+                service: 'Gmail',
                 auth: {
                     user: 'smartroom112000@gmail.com',
                     pass: 'Smartroom@1234',
