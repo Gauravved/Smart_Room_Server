@@ -91,7 +91,7 @@ module.exports.forgotPassword = async (req, res, next) => {
             //token generation
             const token = jwt.sign(payload, newSecret, { expiresIn: '15m' }); //expiresIn specified the time of expiration of that link
             //Link generation from the Token
-            const link = `https://smart-room-chat.herokuapp.com/resetPassword/${validEmail.id}/${token}`
+            const link = `https://smartroom-kappa.vercel.app/resetPassword/${validEmail.id}/${token}`
             const transporter = nodemailer.createTransport({
                 host: "smtp.gmail.com",
                 service: 'Gmail',

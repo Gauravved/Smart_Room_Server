@@ -52,7 +52,7 @@ server.listen(process.env.PORT,()=>{
 // })
 const io = socket(server, {
     cors:{
-        origin: 'https://smart-room-chat.herokuapp.com',
+        origin: 'https://smartroom-kappa.vercel.app/',
         credential: true
     }
 });
