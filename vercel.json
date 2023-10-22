@@ -1,0 +1,197 @@
+{
+    "version": 2,
+    "routes": [
+      {
+        "src": "/api/auth/register",
+        "methods": [
+          "GET",
+          "POST",
+          "PUT",
+          "DELETE",
+          "OPTIONS"
+        ],
+        "headers": {
+          "Access-Control-Allow-Origin": "https://smartroom-kappa.vercel.app",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type",
+          "Access-Control-Allow-Credentials": true
+        }
+      },
+      {
+        "src": "/api/auth/login",
+        "methods": [
+          "GET",
+          "POST",
+          "PUT",
+          "DELETE",
+          "OPTIONS"
+        ],
+        "headers": {
+          "Access-Control-Allow-Origin": "https://smartroom-kappa.vercel.app",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type",
+          "Access-Control-Allow-Credentials": true
+        }
+      },
+      {
+        "src": "/api/auth/setProfile",
+        "methods": [
+          "GET",
+          "POST",
+          "PUT",
+          "DELETE",
+          "OPTIONS"
+        ],
+        "headers": {
+          "Access-Control-Allow-Origin": "https://smartroom-kappa.vercel.app",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type",
+          "Access-Control-Allow-Credentials": true
+        }
+      },
+      {
+        "src": "/api/auth/forgotPassword",
+        "methods": [
+          "GET",
+          "POST",
+          "PUT",
+          "DELETE",
+          "OPTIONS"
+        ],
+        "headers": {
+          "Access-Control-Allow-Origin": "https://smartroom-kappa.vercel.app",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type",
+          "Access-Control-Allow-Credentials": true
+        }
+      },
+      {
+        "src": "/api/auth/resetPassword",
+        "methods": [
+          "GET",
+          "POST",
+          "PUT",
+          "DELETE",
+          "OPTIONS"
+        ],
+        "headers": {
+          "Access-Control-Allow-Origin": "https://smartroom-kappa.vercel.app",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type",
+          "Access-Control-Allow-Credentials": true
+        }
+      },
+      {
+        "src": "/api/auth/allRooms",
+        "methods": [
+          "GET",
+          "POST",
+          "PUT",
+          "DELETE",
+          "OPTIONS"
+        ],
+        "headers": {
+          "Access-Control-Allow-Origin": "https://smartroom-kappa.vercel.app",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type",
+          "Access-Control-Allow-Credentials": true
+        }
+      },
+      {
+        "src": "/api/auth/createRoom",
+        "methods": [
+          "GET",
+          "POST",
+          "PUT",
+          "DELETE",
+          "OPTIONS"
+        ],
+        "headers": {
+          "Access-Control-Allow-Origin": "https://smartroom-kappa.vercel.app",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type",
+          "Access-Control-Allow-Credentials": true
+        }
+      },
+      {
+        "src": "/api/auth/deleteRoom",
+        "methods": [
+          "GET",
+          "POST",
+          "PUT",
+          "DELETE",
+          "OPTIONS"
+        ],
+        "headers": {
+          "Access-Control-Allow-Origin": "https://smartroom-kappa.vercel.app",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type",
+          "Access-Control-Allow-Credentials": true
+        }
+      },
+      {
+        "src": "/api/auth/joinRoom",
+        "methods": [
+          "GET",
+          "POST",
+          "PUT",
+          "DELETE",
+          "OPTIONS"
+        ],
+        "headers": {
+          "Access-Control-Allow-Origin": "https://smartroom-kappa.vercel.app",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type",
+          "Access-Control-Allow-Credentials": true
+        }
+      },
+      {
+        "src": "/api/auth/addMember",
+        "methods": [
+          "GET",
+          "POST",
+          "PUT",
+          "DELETE",
+          "OPTIONS"
+        ],
+        "headers": {
+          "Access-Control-Allow-Origin": "https://smartroom-kappa.vercel.app",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type",
+          "Access-Control-Allow-Credentials": true
+        }
+      },
+      {
+        "src": "/api/message/addMessage",
+        "methods": [
+          "GET",
+          "POST",
+          "PUT",
+          "DELETE",
+          "OPTIONS"
+        ],
+        "headers": {
+          "Access-Control-Allow-Origin": "https://smartroom-kappa.vercel.app",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type",
+          "Access-Control-Allow-Credentials": true
+        }
+      },
+      {
+        "src": "/api/message/getMessage",
+        "methods": [
+          "GET",
+          "POST",
+          "PUT",
+          "DELETE",
+          "OPTIONS"
+        ],
+        "headers": {
+          "Access-Control-Allow-Origin": "https://smartroom-kappa.vercel.app",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type",
+          "Access-Control-Allow-Credentials": true
+        }
+      }
+    ]
+  }
