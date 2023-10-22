@@ -14,9 +14,7 @@ const http = require('http');
 
 const app = express();
 require('dotenv').config();
-app.use(cors({
-    origin: "https://smartroom-kappa.vercel.app"
-}));
+app.use(cors());
 app.options('*',cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
